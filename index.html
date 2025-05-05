@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hacked by MrSanZz</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #000000;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Courier New', monospace;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .hacked-text {
+            color: #ff0000;
+            font-size: 4rem;
+            text-align: center;
+            text-shadow: 0 0 15px #ff0000;
+            animation: pulse 1.5s infinite;
+            position: relative;
+        }
+
+        .glitch-block {
+            position: absolute;
+            background: #ff0000;
+            mix-blend-mode: screen;
+            opacity: 0.1;
+            z-index: 10;
+            animation: glitchBlockAnim 0.2s ease-in-out forwards;
+            filter: contrast(200%) saturate(200%);
+        }
+        
+        @keyframes glitchBlockAnim {
+            0% { transform: scale(1) translate(0, 0); opacity: 0.3; }
+            50% { transform: scale(1.2) translate(-2px, 3px); opacity: 0.5; }
+            100% { transform: scale(1) translate(0, 0); opacity: 0; }
+        }
+        
+        .vertical-glitch {
+            position: absolute;
+            width: 7px;
+            height: 100%;
+            background: rgba(255,0,0,0.1);
+            animation: verticalGlitchAnim 2s infinite;
+        }
+        
+        @keyframes verticalGlitchAnim {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .message {
+            color: #880000;
+            font-size: 1.5rem;
+            margin-top: 20px;
+            text-shadow: 0 0 10px #880000;
+        }
+
+        .subtext {
+            color: #898989;
+            font-size: 1rem;
+            margin-top: 40px;
+            letter-spacing: 3px;
+        }
+
+        .glitch {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            opacity: 0.3;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 2px,
+                rgba(255,0,0,0.1) 2px,
+                rgba(255,0,0,0.1) 4px
+            );
+            animation: glitch-anim 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.005); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes glitch-anim {
+            0% { clip-path: inset(10% 0 90% 0); }
+            20% { clip-path: inset(80% 0 5% 0); }
+            30% { clip-path: inset(10% 0 30% 0); }
+            40% { clip-path: inset(40% 0 20% 0); }
+            100% { clip-path: inset(10% 0 90% 0); }
+        }
+
+        .scanline {
+            position: absolute;
+            width: 100%;
+            height: 4px;
+            background: rgba(255,0,0,0.2);
+            animation: scan 4s linear infinite;
+        }
+
+        @keyframes scan {
+            0% { top: 0%; }
+            100% { top: 100%; }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="glitch"></div>
+    <div class="scanline"></div>
+    <div class="content">
+        <div class="hacked-text">
+            Hacked by MrSanZz
+            <div class="message">SYSTEM SECURITY COMPROMISED</div>
+            <div class="subtext">[ - JogjaXploit & Keje Army - ]</div>
+        </div>
+    </div>
+    <script>
+        function createGlitchBlock() {
+            const block = document.createElement('div');
+            block.classList.add('glitch-block');
+            const size = Math.random() * 50 + 20; // ukuran acak 20-70px
+            block.style.width = `${size}px`;
+            block.style.height = `${Math.random() * 20 + 10}px`;
+            block.style.top = `${Math.random() * 100}%`;
+            block.style.left = `${Math.random() * 100}%`;
+            document.body.appendChild(block);
+            setTimeout(() => block.remove(), 300);
+        }
+    
+        function createVerticalGlitch() {
+            const line = document.createElement('div');
+            line.classList.add('vertical-glitch');
+            line.style.left = `${Math.random() * 100}%`;
+            document.body.appendChild(line);
+            setTimeout(() => line.remove(), 2000);
+        }
+    
+        setInterval(() => {
+            createGlitchBlock();
+            if (Math.random() < 0.3) createVerticalGlitch();
+        }, 150);
+    </script>
+</body>
+</html>
