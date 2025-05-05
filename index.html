@@ -33,7 +33,7 @@
 
         .glitch-block {
             position: absolute;
-            background: #ff0000;
+            background: #650000;
             mix-blend-mode: screen;
             opacity: 0.1;
             z-index: 10;
@@ -56,8 +56,8 @@
         }
         
         @keyframes verticalGlitchAnim {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(100%); }
         }
 
         .message {
@@ -120,6 +120,20 @@
             100% { top: 100%; }
         }
 
+        /* Responsif untuk layar kecil */
+        @media (max-width: 600px) {
+            .hacked-text {
+                font-size: 2.5rem;
+            }
+    
+            .message {
+                font-size: 1.2rem;
+            }
+    
+            .subtext {
+                font-size: 0.85rem;
+            }
+        }
     </style>
 </head>
 <body>
